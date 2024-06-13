@@ -38,25 +38,18 @@ class MyProjectsPage extends StatefulWidget {
 }
 
 class _MyProjectsPageState extends State<MyProjectsPage> {
-  late Future<List<Project>> _future;
   List<Project> _data = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _future = ProjectApi().getAllProjects();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("My Projects")),
         body: FutureBuilder<List<Project>>(
-            future: _future,
+            future: ProjectApi().getAllProjects(),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Project>> snapshot) {
               if (snapshot.hasData) {
-                if (_data.isEmpty) _data = snapshot.data!;
+                _data = snapshot.data!;
                 return SmartPage(
                     builder: Builder(builder: (BuildContext context) {
                   return Column(
@@ -112,7 +105,7 @@ class _MyProjectsPageState extends State<MyProjectsPage> {
     Navigator.push(context,
             MaterialPageRoute(builder: (context) => const CreateProject()))
         .then((value) {
-      if (value != null) setState(() => _data.add(value));
+      if (value != null) setState(() {});
     }).catchError((error) {
       dialogBuilder(context, "Oops!, an error has occurred: $error");
     });

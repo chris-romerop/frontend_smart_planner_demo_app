@@ -30,8 +30,8 @@ class SmartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double height = 512.0;
-    const double width = 1024.0;
+    const double height = 250.0;
+    const double width = 650.0;
     const double paddingSize = 16.0;
 
     return LayoutBuilder(

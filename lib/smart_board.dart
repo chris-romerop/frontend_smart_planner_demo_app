@@ -176,7 +176,7 @@ class _SmartBoardState extends State<SmartBoard> {
                 border: Border(
                     left: BorderSide(color: Colors.grey),
                     top: BorderSide(color: Colors.grey))),
-            width: 300,
+            width: 200,
             height: 32),
         Expanded(
             child: SingleChildScrollView(
@@ -234,7 +234,7 @@ class _SmartBoardState extends State<SmartBoard> {
                               .map<Widget>((e) => _createWorkerHeader(e))
                               .toList())))),
           Container(
-              width: 300,
+              width: 200,
               height: 48,
               padding: const EdgeInsets.all(8.0),
               color: Colors.white,
@@ -264,7 +264,7 @@ class _SmartBoardState extends State<SmartBoard> {
   Widget _createWorkerHeader(Worker worker) {
     return Stack(children: [
       Container(
-          width: 300,
+          width: 200,
           height: _getWorkerAreaSize(worker),
           alignment: Alignment.center,
           decoration: const BoxDecoration(
@@ -378,6 +378,7 @@ class _SmartBoardState extends State<SmartBoard> {
     ProjectApi().saveProject(widget.project).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Couldn't update this Project")));
+      return widget.project;
     });
   }
 }

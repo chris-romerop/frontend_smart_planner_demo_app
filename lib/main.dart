@@ -20,6 +20,7 @@
 // SOFTWARE.
 //
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'projects.dart';
 
 void main() {
@@ -32,12 +33,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).size.width < 600) {
+      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+    }
     return MaterialApp(
       title: 'Smart Planner Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: const MyProjectsPage(),
     );
   }
